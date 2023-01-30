@@ -54,4 +54,12 @@ app.put("/repositories/:id", checksRepositoryExists, (request, response) => {
   return response.json(repository);
 });
 
+app.delete("/repositories/:id", checksRepositoryExists, (request, response) => {
+  const { repositoryIndex } = request;
+
+  repositories.splice(repositoryIndex, 1);
+
+  return response.status(204).send();
+});
+
 module.exports = app;
