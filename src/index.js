@@ -43,4 +43,15 @@ app.post("/repositories", (request, response) => {
   return response.json(repository);
 });
 
+app.put("/repositories/:id", checksRepositoryExists, (request, response) => {
+  const { title, url, techs } = request.body;
+  const { repositoryIndex } = request;
+
+  const repository = { ...repositories[repositoryIndex], title, url, techs };
+
+  repositories[repositoryIndex] = repository;
+
+  return response.json(repository);
+});
+
 module.exports = app;
